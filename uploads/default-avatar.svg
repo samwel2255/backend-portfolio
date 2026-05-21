@@ -1,0 +1,14 @@
+<svg width="960" height="960" viewBox="0 0 960 960" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="g" x1="120" y1="120" x2="840" y2="840" gradientUnits="userSpaceOnUse">
+<stop stop-color="#FFB6C1"/>
+<stop offset="0.5" stop-color="#B799FF"/>
+<stop offset="1" stop-color="#2B0A3D"/>
+</linearGradient>
+</defs>
+<rect width="960" height="960" rx="180" fill="#0F0A1F"/>
+<circle cx="480" cy="380" r="190" fill="url(#g)" fill-opacity="0.92"/>
+<path d="M240 790C294 662 384 600 480 600C576 600 666 662 720 790" stroke="url(#g)" stroke-width="88" stroke-linecap="round"/>
+<circle cx="480" cy="360" r="250" fill="white" fill-opacity="0.04"/>
+<text x="480" y="900" text-anchor="middle" font-family="Arial, sans-serif" font-size="72" fill="#FDFBFF" fill-opacity="0.8">Wakuru Juma Gilagali</text>
+</svg>

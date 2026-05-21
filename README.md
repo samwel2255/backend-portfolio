@@ -1,10 +1,10 @@
 # Wakuru Portfolio — Backend
 
-Express backend for the Wakuru portfolio. Provides REST APIs for skills, projects, contact messages, and about content. Data is stored in PostgreSQL.
+Express backend scaffold for the Wakuru portfolio. The new structure is centered on Prisma + PostgreSQL, JWT admin auth, and a modular service layout.
 
 Quick start
 
-1. Copy `.env.example` to `.env` and set `DATABASE_URL`.
+1. Copy `.env.example` to `.env` and set the database and auth values.
 2. Install dependencies:
 
 ```bash
@@ -12,17 +12,30 @@ cd backend
 npm install
 ```
 
-3. Create the database and run the SQL schema in `migrations/schema.sql`:
+3. Generate the Prisma client and apply the schema:
 
 ```bash
-# using psql
-psql <connection-string> -f migrations/schema.sql
+npm run prisma:generate
+npm run prisma:migrate
 ```
 
-4. Run the server in development:
+4. Seed starter portfolio data:
+
+```bash
+npm run seed
+```
+
+5. Run the API in development:
 
 ```bash
 npm run dev
 ```
 
-API endpoints are mounted under `/api` (e.g. `/api/skills`).
+Deployment notes
+
+- On Render, set `DATABASE_URL` to your Render PostgreSQL connection string.
+- Set `CORS_ORIGIN` to your Vercel frontend URL.
+- Set `JWT_SECRET` to a strong secret for admin authentication.
+- Multiple allowed origins can be supplied as a comma-separated list.
+
+API endpoints continue to live under `/api`, with the current public routes preserved and Prisma-based admin routes ready to be added under the same structure.
