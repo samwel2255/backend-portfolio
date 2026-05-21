@@ -1,17 +1,17 @@
-const express = require('express');
-const prisma = require('../lib/prisma');
-const { success, failure } = require('../services/responses');
-const { requiredString, isEmail } = require('../services/validation');
+const express = require('express')
+const prisma = require('../lib/prisma')
+const { success, failure } = require('../services/responses')
+const { requiredString, isEmail } = require('../services/validation')
+const { requireAdminAuth } = require('../services/adminAuth')
 
-const router = express.Router();
+const router = express.Router()
 
-// Save a contact message
 router.post('/', async (req, res) => {
   try {
-    const { name, email, message } = req.body;
+    const { name, email, message } = req.body
 
     if (!requiredString(name) || !isEmail(email) || !requiredString(message)) {
-      return failure(res, 400, 'Invalid contact payload');
+      return failure(res, 400, 'Invalid contact payload')
     }
 
     const contact = await prisma.contactMessage.create({
@@ -20,40 +20,39 @@ router.post('/', async (req, res) => {
         email,
         message
       }
-    });
+    })
 
-    return success(res, contact, 201);
+    return success(res, contact, 201)
   } catch (err) {
-    console.error(err);
-    return failure(res, 500, 'Database error');
+    console.error(err)
+    return failure(res, 500, 'Database error')
   }
-});
+})
 
-// List messages (admin)
-router.get('/', async (req, res) => {
+router.get('/', requireAdminAuth, async (req, res) => {
   try {
     const messages = await prisma.contactMessage.findMany({
       orderBy: { createdAt: 'desc' }
-    });
+    })
 
-    return success(res, messages);
+    return success(res, messages)
   } catch (err) {
-    console.error(err);
-    return failure(res, 500, 'Database error');
+    console.error(err)
+    return failure(res, 500, 'Database error')
   }
-});
+})
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', requireAdminAuth, async (req, res) => {
   try {
-    const { id } = req.params;
+    const { id } = req.params
 
-    await prisma.contactMessage.delete({ where: { id: Number(id) } });
+    await prisma.contactMessage.delete({ where: { id: Number(id) } })
 
-    return success(res, { deleted: true });
+    return success(res, { deleted: true })
   } catch (err) {
-    console.error(err);
-    return failure(res, 500, 'Database error');
+    console.error(err)
+    return failure(res, 500, 'Database error')
   }
-});
+})
 
-module.exports = router;
+module.exports = router

@@ -79,6 +79,51 @@ router.get('/profile', async (req, res) => {
   }
 })
 
+router.get('/about', async (req, res) => {
+  try {
+    await touchAdminActivity(req.admin.id)
+    const profile = await prisma.profile.findFirst({ orderBy: { id: 'asc' } })
+
+    return success(res, {
+      content: profile?.bio || '',
+      extra: profile?.summary || ''
+    })
+  } catch (error) {
+    console.error(error)
+    return failure(res, 500, 'Unable to load about content')
+  }
+})
+
+router.put('/about', async (req, res) => {
+  try {
+    await touchAdminActivity(req.admin.id)
+    const { content, extra } = req.body || {}
+    const currentProfile = await prisma.profile.findFirst({ orderBy: { id: 'asc' } })
+
+    const profile = await prisma.profile.upsert({
+      where: { id: currentProfile?.id || 1 },
+      update: {
+        bio: content,
+        summary: extra
+      },
+      create: {
+        name: 'Wakuru Juma Gilagali',
+        title: 'Final-year software developer',
+        summary: extra || '',
+        bio: content || ''
+      }
+    })
+
+    return success(res, {
+      content: profile.bio || '',
+      extra: profile.summary || ''
+    })
+  } catch (error) {
+    console.error(error)
+    return failure(res, 500, 'Unable to update about content')
+  }
+})
+
 router.put('/profile', upload.single('avatar'), async (req, res) => {
   try {
     await touchAdminActivity(req.admin.id)
@@ -93,6 +138,10 @@ router.put('/profile', upload.single('avatar'), async (req, res) => {
         title: payload.title,
         summary: payload.summary,
         bio: payload.bio,
+        intro: payload.intro,
+        projectsStat: payload.projectsStat,
+        researchStat: payload.researchStat,
+        availabilityStat: payload.availabilityStat,
         resumeUrl: payload.resumeUrl,
         avatarUrl,
         githubUrl: payload.githubUrl,
@@ -104,6 +153,10 @@ router.put('/profile', upload.single('avatar'), async (req, res) => {
         title: payload.title || 'Final-year software developer',
         summary: payload.summary || '',
         bio: payload.bio || '',
+        intro: payload.intro || '',
+        projectsStat: payload.projectsStat || '18+',
+        researchStat: payload.researchStat || 'AI + Data',
+        availabilityStat: payload.availabilityStat || 'Open to collaborate',
         resumeUrl: payload.resumeUrl || null,
         avatarUrl,
         githubUrl: payload.githubUrl || null,

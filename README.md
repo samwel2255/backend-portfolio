@@ -38,4 +38,12 @@ Deployment notes
 - Set `JWT_SECRET` to a strong secret for admin authentication.
 - Multiple allowed origins can be supplied as a comma-separated list.
 
-API endpoints continue to live under `/api`, with the current public routes preserved and Prisma-based admin routes ready to be added under the same structure.
+API layout
+
+- Public read: `GET /api/profile`, `/api/about`, `/api/skills`, `/api/projects`, `/api/education`
+- Public write: `POST /api/contact` only
+- Admin CRUD: `/api/admin/*` (JWT Bearer token from `POST /api/admin/login`)
+
+After deploying schema changes or adding profile fields, re-run `npm run seed` against production so hero stats, intro, and email are populated.
+
+Default admin (from seed): `wakuru@gmail.com` / `wakuru@123` — change the password in production.

@@ -48,20 +48,30 @@ async function main() {
       title: 'Final-year software developer',
       summary: 'Frontend and backend developer, data analyst, and AI enthusiast.',
       bio: 'Final-year student at Eastern Africa Statistical Training Centre (EASTC), expected to graduate in July 2026.',
+      intro: 'Passionate about building modern web applications, analyzing data, and applying AI solutions to real-world problems.',
+      projectsStat: '18+',
+      researchStat: 'AI + Data',
+      availabilityStat: 'Open to collaborate',
       resumeUrl: '/resume.pdf',
       avatarUrl: fs.existsSync(portraitTargetPath) ? '/uploads/waku.jpeg' : '/uploads/default-avatar.svg',
       githubUrl: 'https://github.com/',
-      linkedinUrl: 'https://linkedin.com/'
+      linkedinUrl: 'https://linkedin.com/',
+      email: 'wakuru@gmail.com'
     },
     create: {
       name: 'Wakuru Juma Gilagali',
       title: 'Final-year software developer',
       summary: 'Frontend and backend developer, data analyst, and AI enthusiast.',
       bio: 'Final-year student at Eastern Africa Statistical Training Centre (EASTC), expected to graduate in July 2026.',
+      intro: 'Passionate about building modern web applications, analyzing data, and applying AI solutions to real-world problems.',
+      projectsStat: '18+',
+      researchStat: 'AI + Data',
+      availabilityStat: 'Open to collaborate',
       resumeUrl: '/resume.pdf',
       avatarUrl: fs.existsSync(portraitTargetPath) ? '/uploads/waku.jpeg' : '/uploads/default-avatar.svg',
       githubUrl: 'https://github.com/',
-      linkedinUrl: 'https://linkedin.com/'
+      linkedinUrl: 'https://linkedin.com/',
+      email: 'wakuru@gmail.com'
     }
   })
 

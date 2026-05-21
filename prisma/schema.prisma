@@ -13,6 +13,10 @@ model Profile {
   title       String
   summary     String
   bio         String
+  intro       String?
+  projectsStat String?
+  researchStat String?
+  availabilityStat String?
   resumeUrl   String?
   avatarUrl   String?
   githubUrl   String?
