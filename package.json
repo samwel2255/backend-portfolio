@@ -1,7 +1,7 @@
 {
-  "name": "wakuru-backend",
+  "name": "samwel-backend",
   "version": "0.1.0",
-  "description": "Express backend for Wakuru portfolio",
+  "description": "Express backend for Samwel portfolio",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
