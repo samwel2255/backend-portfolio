@@ -1,4 +1,4 @@
-# Wakuru Portfolio — Backend
+# Samwel Portfolio — Backend
 
 Express backend scaffold for the Wakuru portfolio. The new structure is centered on Prisma + PostgreSQL, JWT admin auth, and a modular service layout.
 
